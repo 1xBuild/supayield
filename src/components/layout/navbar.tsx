@@ -2,11 +2,16 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { ModeToggle } from "./theme-toggle";
 
 export const NAVLINKS = [
   {
+    title: "Team",
+    href: "#team",
+  },
+  {
+    
     title: "Documentation",
-    slug: "avail",
     href: "/Docs",
   },
 ]
@@ -31,6 +36,7 @@ export function Navbar() {
             Menu
           </Button>
         </div>
+         <ModeToggle />
       </div>
     </nav>
   );
