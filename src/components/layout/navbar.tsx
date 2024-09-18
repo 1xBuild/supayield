@@ -3,6 +3,22 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ModeToggle } from "./theme-toggle";
+import { useState } from "react";
+import { Github, Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../ui/navigation-menu";
 
 export const NAVLINKS = [
   {
@@ -27,11 +43,11 @@ export const NAVLINKS = [
   },
   {
     title: "community",
-    href: "#community"
+    href: "#community",
   },
   {
     title: "pricing",
-    href: "#pricing"
+    href: "#pricing",
   },
   {
     title: "Contact",
@@ -42,56 +58,93 @@ export const NAVLINKS = [
     href: "#faq",
   },
   {
-    
     title: "Documentation",
     href: "/Docs",
   },
-]
+];
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="sticky top-0 z-50 h-16 w-full border-b bg-card shadow-inner">
-      <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between px-4">
-        {/* Logo Section */}
-        <div className="flex items-center gap-5">
-          <Logo />
-        </div>
+    <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-1 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
+      <Link href="/" className="font-bold text-lg flex items-center">
+        1xBuild
+      </Link>
+      {/* <!-- Mobile --> */}
+      <div className="flex items-center lg:hidden">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Menu
+              onClick={() => setIsOpen(!isOpen)}
+              className="cursor-pointer lg:hidden"
+            />
+          </SheetTrigger>
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-4">
-          <NavMenu />
-        </div>
+          <SheetContent
+            side="left"
+            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
+          >
+            <div>
+              <SheetHeader className="mb-4 ml-4">
+                <SheetTitle className="flex items-center">
+                  <Link href="/" className="flex items-center">
+                    1xBuild
+                  </Link>
+                </SheetTitle>
+              </SheetHeader>
 
-        {/* Mobile Menu and Actions */}
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="md:hidden">
-            Menu
-          </Button>
-        </div>
-         <ModeToggle />
+              <div className="flex flex-col gap-2">
+                {NAVLINKS.map(({ href, title }) => (
+                  <Button
+                    key={href}
+                    onClick={() => setIsOpen(false)}
+                    asChild
+                    variant="ghost"
+                    className="justify-start text-base"
+                  >
+                    <Link href={href}>{title}</Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            <SheetFooter className="flex-col sm:flex-col justify-start items-start">
+              <ModeToggle />
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </div>
-    </nav>
-  );
-}
 
-export function Logo() {
-  return (
-    <Link href="/" className="flex items-center gap-2">
-      <span className="text-xl font-bold">1xBuild</span>
-    </Link>
-  );
-}
+      {/* <!-- Desktop --> */}
+      <NavigationMenu className="hidden lg:block mx-auto">
+        <NavigationMenuList>
+          <NavigationMenuItem></NavigationMenuItem>
 
-export function NavMenu() {
-  return (
-    <>
-      {NAVLINKS.map((item) => (
-        <Link key={item.title} href={item.href}>
-          <Button variant="ghost" className="text-sm font-medium">
-            {item.title}
-          </Button>
-        </Link>
-      ))}
-    </>
+          <NavigationMenuItem>
+            {NAVLINKS.map(({ href, title }) => (
+              <NavigationMenuLink key={href} asChild>
+                <Link href={href} className="text-base px-2">
+                  {title}
+                </Link>
+              </NavigationMenuLink>
+            ))}
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      <div className="hidden lg:flex">
+        <ModeToggle />
+
+        <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
+          <Link
+            aria-label="View on GitHub"
+            href="https://github.com/nobruf/shadcn-landing-page.git"
+            target="_blank"
+          >
+            <Github className="size-5" />
+          </Link>
+        </Button>
+      </div>
+    </header>
   );
 }
