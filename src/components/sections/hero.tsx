@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link"
 
-export default function HeroSection() {
+export const HeroSection = () => {
   return (
     <div className="flex min-h-[88vh] flex-col items-center justify-center px-2 py-8 text-center sm:min-h-[91vh]">
       <div className="flex max-w-[980px] flex-col items-start gap-2">

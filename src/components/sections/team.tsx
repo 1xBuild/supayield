@@ -1,4 +1,4 @@
-import { Github , Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 import {
   Card,
@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-
 
 interface TeamProps {
   imageUrl: string;
@@ -46,8 +45,7 @@ export const TeamSection = () => {
       ],
     },
     {
-      imageUrl:
-        "/images/eth-btc-blue.png",
+      imageUrl: "/images/eth-btc-blue.png",
       firstName: "Bertrand",
       lastName: "Build",
       positions: ["UI/UX Designer"],
@@ -65,7 +63,7 @@ export const TeamSection = () => {
           url: "https://x.com/",
         },
       ],
-    }
+    },
   ];
 
   const socialIcon = (socialName: string) => {
@@ -80,7 +78,7 @@ export const TeamSection = () => {
   };
 
   return (
-    <section id="team" className="container lg:w-[75%] py-24 sm:py-32">
+    <section id="team" className="container py-24 sm:py-32">
       <div className="text-center mb-8">
         <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
           Team
@@ -91,58 +89,58 @@ export const TeamSection = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {teamList.map(
-          (
-            { imageUrl, firstName, lastName, positions, socialNetworks },
-            index
-          ) => (
-            <Card
-              key={index}
-              className="bg-muted/60 dark:bg-card flex flex-col h-full overflow-hidden group/hoverimg"
-            >
-              <CardHeader className="p-0 gap-0">
-                <div className="h-full overflow-hidden">
-                  <Image
-                    src={imageUrl}
-                    alt=""
-                    width={300}
-                    height={300}
-                    className="w-full aspect-square object-cover saturate-0 transition-all duration-200 ease-linear size-full group-hover/hoverimg:saturate-100 group-hover/hoverimg:scale-[1.01]"
-                  />
-                </div>
-                <CardTitle className="py-6 pb-4 px-6">
-                  {firstName}
-                  <span className="text-primary ml-2">{lastName}</span>
-                </CardTitle>
-              </CardHeader>
-              {positions.map((position, index) => (
-                <CardContent
-                  key={index}
-                  className={`pb-0 text-muted-foreground ${
-                    index === positions.length - 1 && "pb-6"
-                  }`}
-                >
-                  {position}
-                  {index < positions.length - 1 && <span>,</span>}
-                </CardContent>
-              ))}
-
-              <CardFooter className="space-x-4 mt-auto">
-                {socialNetworks.map(({ name, url }, index) => (
-                  <Link
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {teamList.map(
+            (
+              { imageUrl, firstName, lastName, positions, socialNetworks },
+              index
+            ) => (
+              <Card
+                key={index}
+                className="bg-muted/60 dark:bg-card flex flex-col h-full overflow-hidden group/hoverimg"
+              >
+                <CardHeader className="p-0 gap-0">
+                  <div className="h-full overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt=""
+                      width={300}
+                      height={300}
+                      className="w-full aspect-square object-cover saturate-0 transition-all duration-200 ease-linear size-full group-hover/hoverimg:saturate-100 group-hover/hoverimg:scale-[1.01]"
+                    />
+                  </div>
+                  <CardTitle className="py-6 pb-4 px-6">
+                    {firstName}
+                    <span className="text-primary ml-2">{lastName}</span>
+                  </CardTitle>
+                </CardHeader>
+                {positions.map((position, index) => (
+                  <CardContent
                     key={index}
-                    href={url}
-                    target="_blank"
-                    className="hover:opacity-80 transition-all"
+                    className={`pb-0 text-muted-foreground ${
+                      index === positions.length - 1 && "pb-6"
+                    }`}
                   >
-                    {socialIcon(name)}
-                  </Link>
+                    {position}
+                    {index < positions.length - 1 && <span>,</span>}
+                  </CardContent>
                 ))}
-              </CardFooter>
-            </Card>
-          )
-        )}
+
+                <CardFooter className="space-x-4 mt-auto">
+                  {socialNetworks.map(({ name, url }, index) => (
+                    <Link
+                      key={index}
+                      href={url}
+                      target="_blank"
+                      className="hover:opacity-80 transition-all"
+                    >
+                      {socialIcon(name)}
+                    </Link>
+                  ))}
+                </CardFooter>
+              </Card>
+            )
+          )}
       </div>
     </section>
   );
