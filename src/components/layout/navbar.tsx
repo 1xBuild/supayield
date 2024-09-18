@@ -10,6 +10,22 @@ export const NAVLINKS = [
     href: "#team",
   },
   {
+    title: "community",
+    href: "#community"
+  },
+  {
+    title: "pricing",
+    href: "#pricing"
+  },
+  {
+    title: "Contact",
+    href: "#contact",
+  },
+  {
+    title: "FAQ",
+    href: "#faq",
+  },
+  {
     
     title: "Documentation",
     href: "/Docs",
