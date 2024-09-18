@@ -50,7 +50,7 @@ export const NAVLINKS = [
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 h-16 w-full border-b bg-white shadow-sm">
+    <nav className="sticky top-0 z-50 h-16 w-full border-b bg-card shadow-inner">
       <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between px-4">
         {/* Logo Section */}
         <div className="flex items-center gap-5">
