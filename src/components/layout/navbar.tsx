@@ -6,6 +6,22 @@ import { ModeToggle } from "./theme-toggle";
 
 export const NAVLINKS = [
   {
+    title: "Benefits",
+    href: "#benefits",
+  },
+  {
+    title: "Features",
+    href: "#features",
+  },
+  {
+    title: "Services",
+    href: "#services",
+  },
+  {
+    title: "Feedback",
+    href: "#feedback",
+  },
+  {
     title: "Team",
     href: "#team",
   },
