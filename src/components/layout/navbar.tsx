@@ -23,44 +23,37 @@ import {
 export const NAVLINKS = [
   {
     title: "Benefits",
-    href: "#benefits",
+    href: "/#benefits",
   },
   {
     title: "Features",
-    href: "#features",
+    href: "/#features",
   },
   {
     title: "Services",
-    href: "#services",
-  },
-  {
-    title: "Feedback",
-    href: "#feedback",
+    href: "/#services",
   },
   {
     title: "Team",
-    href: "#team",
+    href: "/#team",
   },
   {
-    title: "community",
-    href: "#community",
+    title: "-",
+    href: "/",
   },
   {
-    title: "pricing",
-    href: "#pricing",
+    title: "Earn",
+    href: "/earn",
   },
   {
-    title: "Contact",
-    href: "#contact",
-  },
-  {
-    title: "FAQ",
-    href: "#faq",
+    title: "Portfolio",
+    href: "/portfolio",
   },
   {
     title: "Documentation",
-    href: "/Docs",
+    href: "/docs",
   },
+  // Add others navigation
 ];
 
 export function Navbar() {
@@ -68,7 +61,7 @@ export function Navbar() {
   return (
     <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-1 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
       <Link href="/" className="font-bold text-lg flex items-center">
-        1xBuild
+        Supayield
       </Link>
       {/* <!-- Mobile --> */}
       <div className="flex items-center lg:hidden">
@@ -88,11 +81,12 @@ export function Navbar() {
               <SheetHeader className="mb-4 ml-4">
                 <SheetTitle className="flex items-center">
                   <Link href="/" className="flex items-center">
-                    1xBuild
+                    Supayield
                   </Link>
                 </SheetTitle>
               </SheetHeader>
-
+              
+              {/* Desktop Navigation */}
               <div className="flex flex-col gap-2">
                 {NAVLINKS.map(({ href, title }) => (
                   <Button
@@ -132,13 +126,15 @@ export function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
 
+      
+
       <div className="hidden lg:flex">
         <ModeToggle />
 
         <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
           <Link
             aria-label="View on GitHub"
-            href="https://github.com/nobruf/shadcn-landing-page.git"
+            href="https://github.com/1xBuild/supayield"
             target="_blank"
           >
             <Github className="size-5" />

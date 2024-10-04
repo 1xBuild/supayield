@@ -32,11 +32,11 @@ export const TeamSection = () => {
       socialNetworks: [
         {
           name: "LinkedIn",
-          url: "https://www.linkedin.com/in/",
+          url: "www.linkedin.com/in/yohan-regnier-5a2505254/",
         },
         {
           name: "Github",
-          url: "https://github.com/",
+          url: "https://github.com/YohanGH",
         },
         {
           name: "Twitter",
@@ -56,7 +56,7 @@ export const TeamSection = () => {
         },
         {
           name: "Github",
-          url: "https://github.com/",
+          url: "https://github.com/bertrandbuild",
         },
         {
           name: "Twitter",

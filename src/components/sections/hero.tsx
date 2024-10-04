@@ -12,7 +12,7 @@ export const HeroSection = () => {
 
             <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
               <h1 className="mb-4 text-3xl font-bold sm:text-7xl">
-                Welcome to <strong>1xBuild</strong>
+                Welcome to <strong>Supayield</strong>
               </h1>
             </div>
 
@@ -33,7 +33,7 @@ export const HeroSection = () => {
                 className="w-5/6 md:w-1/4 font-bold"
               >
                 <Link
-                  href="https://github.com/"
+                  href="https://github.com/1xBuild/supayield"
                   target="_blank"
                 >
                   Github respository
