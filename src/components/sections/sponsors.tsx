@@ -12,32 +12,24 @@ interface sponsorsProps {
 
 const sponsors: sponsorsProps[] = [
   {
-    icon: "Crown",
-    name: "Acmebrand",
+    icon: "Container",
+    name: "Hackathon",
   },
   {
-    icon: "Vegan",
-    name: "Acmelogo",
+    icon: "Container",
+    name: "encode",
   },
   {
-    icon: "Ghost",
-    name: "Acmesponsor",
+    icon: "Container",
+    name: "Fuel",
   },
   {
-    icon: "Puzzle",
-    name: "Acmeipsum",
+    icon: "Container",
+    name: "Neo",
   },
   {
-    icon: "Squirrel",
-    name: "Acme",
-  },
-  {
-    icon: "Cookie",
-    name: "Accmee",
-  },
-  {
-    icon: "Drama",
-    name: "Acmetech",
+    icon: "Container",
+    name: "Grind",
   },
 ];
 
