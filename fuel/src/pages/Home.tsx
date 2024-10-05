@@ -6,7 +6,6 @@ import Services from "@/components/sections/Services"
 import Team from "@/components/sections/Team"
 import SponsorsSection from "@/components/sections/Sponsors"
 
-
 export default function Home() {
   return (
     <>
