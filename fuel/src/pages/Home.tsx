@@ -5,7 +5,6 @@ import { useRouter } from "../hooks/useRouter";
 import Button from "../components/fuels/Button";
 import Info from "../components/fuels/Info";
 import Wallet from "../components/fuels/Wallet";
-import Contract from "../components/fuels/Contract";
 import Predicate from "../components/fuels/Predicate";
 import Script from "../components/fuels/Script";
 import Faucet from "../components/fuels/Faucet";
@@ -82,7 +81,6 @@ function App() {
                       </div>
 
                       {view === "wallet" && <Wallet />}
-                      {view === "contract" && <Contract />}
                       {view === "predicate" && <Predicate />}
                       {view === "script" && <Script />}
                       {view === "faucet" && <Faucet />}
