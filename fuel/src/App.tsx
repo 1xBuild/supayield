@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="main-content" aria-label="Main content">
+      <main className="main-content mx-auto h-hauto w-[85vh] sm:container" aria-label="Main content">
         <Outlet />
       </main>
       <Footer />

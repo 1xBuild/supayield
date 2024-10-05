@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 
-export default function EarnPage() {
+export default function Earn() {
   return (
     <div className="min-h-screen bg-background flex justify-center p-8">
       <div className="w-full max-w-md">

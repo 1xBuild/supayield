@@ -47,7 +47,7 @@ const featureList: FeaturesProps[] = [
   },
 ];
 
-export const FeaturesSection = () => {
+const FeaturesSection = () => {
   return (
     <section id="features" className="container py-24 sm:py-32">
       <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
@@ -91,3 +91,5 @@ export const FeaturesSection = () => {
     </section>
   );
 };
+
+export default FeaturesSection;

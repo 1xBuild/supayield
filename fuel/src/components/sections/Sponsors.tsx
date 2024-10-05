@@ -1,5 +1,3 @@
-"use client";
-
 import { Icon } from "../ui/icon";
 import { Marquee } from "@devnomic/marquee";
 import "@devnomic/marquee/dist/index.css";
@@ -33,7 +31,7 @@ const sponsors: sponsorsProps[] = [
   },
 ];
 
-export const SponsorsSection = () => {
+const SponsorsSection = () => {
   return (
     <section id="sponsors" className="max-w-[75%] mx-auto mt-2">
       {/* TODO : Change visuel for indicate sponsors */}
@@ -67,3 +65,5 @@ export const SponsorsSection = () => {
     </section>
   );
 };
+
+export default SponsorsSection;
