@@ -1,2 +1,0 @@
-Contract deployed at: 
-0x60da60d2946a796c80582cf56f13b23bf7ebf32b26c3451604080365ed5d4d3a

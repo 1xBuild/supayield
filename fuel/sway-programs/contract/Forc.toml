@@ -1,7 +1,8 @@
 [project]
 authors = ["Fuel Labs <contact@fuel.sh>"]
-entry = "main.sw"
+entry = "vault_logic.sw"
 license = "Apache-2.0"
 name = "test-contract"
 
 [dependencies]
+standards = { git = "https://github.com/FuelLabs/sway-standards", tag = "v0.6.1" }
