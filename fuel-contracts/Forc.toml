@@ -1,5 +1,5 @@
 [project]
-authors = ["Bertrand Rigal"]
+authors = ["Supayield"]
 entry = "vault_logic.sw"
 license = "Apache-2.0"
 name = "fuel-contracts"
