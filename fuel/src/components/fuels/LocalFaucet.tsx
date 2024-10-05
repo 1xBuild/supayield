@@ -54,7 +54,7 @@ export default function LocalFaucet({ refetch, addressToFund }: Props) {
           </p>
           <Button
             onClick={localTransfer}
-            className="w-1/3"
+            className="w-1/3 text-primary"
             disabled={isLoading}
           >
             Transfer 5 ETH

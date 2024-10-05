@@ -35,18 +35,19 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative group mt-14">
+        {/* <div className="relative group mt-14">
           <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl"></div>
-          <img
+           <img
             src="/images/eth-btc-blue.png"
-            width={1200}
-            height={800}
+            width={800}
+            height={600}
             className="w-full md:w-[1200px] mx-auto rounded-lg relative leading-none flex items-center border border-t-2 border-secondary border-t-primary/30"
             alt="dashboard"
           />
 
           <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
-        </div>
+        </div> */}
+
       </div>
     </section>
   );

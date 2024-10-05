@@ -102,7 +102,7 @@ export default function Wallet() {
             className="w-2/3 bg-gray-800 rounded-md mb-2 md:mb-0 px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => disconnect()} className="w-1/3">
+          <Button onClick={() => disconnect()} className="w-1/3 text-primary">
             Disconnect
           </Button>
         </div>
@@ -118,7 +118,7 @@ export default function Wallet() {
             className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => refetch()} className="w-1/3">
+          <Button onClick={() => refetch()} className="w-1/3 text-primary">
             Refresh
           </Button>
         </div>
@@ -133,7 +133,7 @@ export default function Wallet() {
           onChange={(e) => setDepositAmount(parseFloat(e.target.value) || 0)}
           className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
         />
-        <Button onClick={() => deposit(depositAmount)} className="w-1/3">
+        <Button onClick={() => deposit(depositAmount)} className="w-1/3 text-primary">
           Deposit
         </Button>
         {isLoading && <p>Loading...</p>}

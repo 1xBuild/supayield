@@ -62,6 +62,9 @@ export default function Docs() {
           This documentation will guide you through the features and usage of
           our product. Use the sidebar to navigate between different sections.
         </p>
+        <a href="https://fuel.network/" target="_blank" rel="noreferrer">
+          <img src="./logo_white.png" alt="Fuel Logo" className="w-[124px]" />
+        </a>
         <h2 className="text-2xl font-semibold mb-2">Quick Start</h2>
         <p className="mb-4">To get started, follow these simple steps:</p>
         <ol className="list-decimal list-inside mb-4">

@@ -94,3 +94,79 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Added hover effects and transitions */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md transition-all duration-200 ease-in-out;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80;
+  }
+
+  .input {
+    @apply border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-in-out;
+  }
+
+  .input:hover {
+    @apply border-primary/50;
+  }
+
+  .card {
+    @apply bg-card text-card-foreground rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-200 ease-in-out;
+  }
+
+  .link {
+    @apply text-primary underline-offset-4 hover:underline transition-all duration-200 ease-in-out;
+  }
+}
+
+/* Additional hover effects */
+.hover-scale {
+  @apply transition-transform duration-200 ease-in-out hover:scale-105;
+}
+
+.hover-brightness {
+  @apply transition-all duration-200 ease-in-out hover:brightness-110;
+}
+
+.hover-shadow {
+  @apply transition-shadow duration-200 ease-in-out hover:shadow-lg;
+}
+
+/* Improved focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  @apply transition-colors duration-200 ease-in-out;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground/90 active:bg-primary/70;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-secondary-foreground/90 active:bg-secondary/70;
+  }
+
+  .input:hover {
+    @apply border-primary/80;
+  }
+
+  .card:hover {
+    @apply bg-card/90 text-card-foreground/80 shadow-lg;
+  }
+
+  .link:hover {
+    @apply text-primary/80;
+  }
+}
