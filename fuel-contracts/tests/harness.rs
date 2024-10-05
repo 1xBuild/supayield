@@ -1,4 +1,6 @@
-use fuels::{prelude::*, types::ContractId};
+use fuels::{prelude::*};
+use fuels::types::{ContractId, Address, AssetId};
+use fuels::types::Identity;
 
 // Load abi from json
 abigen!(Contract(
@@ -36,14 +38,46 @@ async fn get_contract_instance() -> (MyContract<WalletUnlocked>, ContractId) {
 }
 
 #[tokio::test]
-async fn can_get_contract_id() {
+async fn test_contract_deployment() {
     let (_instance, _id) = get_contract_instance().await;
 
-    // Now you have an instance of your contract you can use to test each function
+    // Test that the contract ID is not zero
+    assert_ne!(_id, ContractId::from([0u8; 32]));
+
+    // Test that the instance has the correct contract ID
+    assert_eq!(
+        ContractId::from(_instance.contract_id()),
+        _id
+    );
 }
 
 #[tokio::test]
 async fn test_deposit() {
-    // Failing test
-    assert_eq!(true, false);
+    let (_instance, _id) = get_contract_instance().await;
+
+    // Create a test identity and vault sub-id
+    let receiver = Identity::Address(Address::from([0u8; 32]));
+    let vault_sub_id = [0u8; 32];
+
+    // Amount to deposit
+    let deposit_amount = 100;
+
+    // Prepare the call parameters
+    let call_params = CallParameters::new(
+        deposit_amount,
+        AssetId::default(),
+        1_000_000,
+    );
+
+    // Call the deposit function
+    let result = _instance
+        .methods()
+        .deposit(receiver, fuels::types::Bits256(vault_sub_id))
+        .call_params(call_params).expect("REASON")
+        .call()
+        .await
+        .unwrap(); // FIXME: failed transfer to address
+
+    // Check the result
+    assert_eq!(result.value, deposit_amount, "The returned shares should equal the deposited amount when it's the first deposit");
 }
