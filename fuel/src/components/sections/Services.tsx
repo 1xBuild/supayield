@@ -41,7 +41,7 @@ const serviceList: ServiceProps[] = [
   },
 ];
 
-export const ServicesSection = () => {
+const ServicesSection = () => {
   return (
     <section id="services" className="container py-24 sm:py-32">
       <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
@@ -80,3 +80,5 @@ export const ServicesSection = () => {
     </section>
   );
 };
+
+export default ServicesSection;

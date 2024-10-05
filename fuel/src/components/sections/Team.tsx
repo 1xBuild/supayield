@@ -7,8 +7,6 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
 
 interface TeamProps {
   imageUrl: string;
@@ -22,7 +20,7 @@ interface SocialNetworkProps {
   url: string;
 }
 
-export const TeamSection = () => {
+const TeamSection = () => {
   const teamList: TeamProps[] = [
     {
       imageUrl: "/images/eth-btc-blue.png",
@@ -101,7 +99,7 @@ export const TeamSection = () => {
               >
                 <CardHeader className="p-0 gap-0">
                   <div className="h-full overflow-hidden">
-                    <Image
+                    <img
                       src={imageUrl}
                       alt=""
                       width={300}
@@ -128,14 +126,14 @@ export const TeamSection = () => {
 
                 <CardFooter className="space-x-4 mt-auto">
                   {socialNetworks.map(({ name, url }, index) => (
-                    <Link
+                    <a
                       key={index}
                       href={url}
                       target="_blank"
                       className="hover:opacity-80 transition-all"
                     >
                       {socialIcon(name)}
-                    </Link>
+                    </a>
                   ))}
                 </CardFooter>
               </Card>
@@ -145,3 +143,5 @@ export const TeamSection = () => {
     </section>
   );
 };
+
+export default TeamSection;
