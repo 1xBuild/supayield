@@ -312,7 +312,7 @@ export default function WalletComponent() {
           </Button>
         </div>
         {isLoading && <p>Loading...</p>}
-        <p>Total Assets: {total_assets}</p>
+
       </div>
       {isLocal && <LocalFaucet refetch={refetch} />}
     </>
