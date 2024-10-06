@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useSwitchChain, useAccount } from "wagmi";
-import { connect } from "@wagmi/core";
+import { connect, disconnect } from "@wagmi/core";
 import { injected } from "@wagmi/connectors";
 import { neoxTestnet } from "@/main";
 import { config } from "@/main";
@@ -40,12 +40,16 @@ export default function EarnNeoX() {
           <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
             Balance
           </h2>
-          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4"><Button className="w-1/3 text-primary">Refresh</Button></div>
+          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
+            <Button className="w-1/3 text-primary">Refresh</Button>
+          </div>
 
           <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
             Deposit to
           </h2>
-          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4"><Button className="w-1/3 text-primary">Deposit</Button></div>
+          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
+            <Button className="w-1/3 text-primary">Deposit</Button>
+          </div>
 
           <div className="space-y-4">
             <div className="bg-accent/10 rounded-2xl p-4">
@@ -55,6 +59,15 @@ export default function EarnNeoX() {
                   className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6"
                 >
                   Connect Wallet
+                </Button>
+              )}
+
+              {address && config && (
+                <Button
+                onClick={() => disconnect(config)}
+                  className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6"
+                >
+                  Disconnect Wallet
                 </Button>
               )}
 
