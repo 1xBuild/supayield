@@ -32,7 +32,7 @@ const Portfolio: React.FC = () => {
             {formattedBalanceEth ? `${formattedBalanceEth} ETH` : "0 ETH"}
           </div>
           <div className="text-6xl font-bold text-primary mb-8">
-            {formattedBalanceSupa ? `${formattedBalanceSupa} SUPA` : "0 SUPA"}
+            {formattedBalanceSupa ? `${formattedBalanceSupa} $SUPA` : "0 $SUPA"}
           </div>
 
           <div className="space-y-6">
@@ -41,16 +41,6 @@ const Portfolio: React.FC = () => {
             </h2>
             <div className="text-muted-foreground text-base">
               {address ? address : "No address connected"}
-            </div>
-
-            <h2 className="text-xl font-semibold text-foreground">
-              Your Opportunities
-            </h2>
-            <div className="flex justify-between text-sm font-medium text-muted-foreground">
-              <span>APY</span>
-              <span>Savings</span>
-              <span>Est. Yield</span>
-              <span>Withdraw/Deposit</span>
             </div>
 
             {/* Premier élément : graphique d'investissement */}
@@ -62,30 +52,6 @@ const Portfolio: React.FC = () => {
                 <p className="text-sm text-muted-foreground">
                   Graph coming soon...
                 </p>
-              </div>
-            </div>
-
-            {/* Deuxième élément : aperçu d'une opportunité */}
-            <div className="p-4 bg-gray-200 rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Next Big Opportunity
-              </h3>
-              <p className="text-base text-muted-foreground">
-                Explore the latest investment opportunities curated just for
-                you.
-              </p>
-              <div className="h-40 bg-gray-100 rounded-md flex items-center justify-center">
-                <p className="text-sm text-muted-foreground">
-                  Graph coming soon...
-                </p>
-              </div>
-              <div className="flex justify-end">
-                <button
-                  className="w-full bg-gray-400 text-gray-700 font-semibold py-3 rounded-full cursor-not-allowed opacity-50"
-                  disabled
-                >
-                  Learn More
-                </button>
               </div>
             </div>
           </div>

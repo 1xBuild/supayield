@@ -11,9 +11,9 @@ interface BenefitsProps {
 const benefitList: BenefitsProps[] = [
   {
     icon: "Container",
-    title: "Reducing Impermanent Losses (IL)",
+    title: "DeFi for everyone",
     description:
-      "Protect your investments by minimising permanent losses with our intelligent asset management strategies.",
+      "Get access to the best yields in DeFi without needing a PhD to understand what you’re looking at.",
   },
   {
     icon: "Container",
@@ -23,9 +23,9 @@ const benefitList: BenefitsProps[] = [
   },
   {
     icon: "Container",
-    title: "Strategy diversification",
+    title: "First Fuel and NeoX Yield Aggregator",
     description:
-      "Maximise your returns by diversifying your investments across several pools and strategies.",
+      "Maximise your returns by diversifying your investments across several new chains and new strategies.",
   },
   {
     icon: "Container",
@@ -43,14 +43,12 @@ const BenefitsSection = () => {
           <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your advantages with our Yield Aggregator
+            Why a new Yield Aggregator?
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Simplify the management of your DeFi investments with our
-            performance aggregator. Our solution gives you access to optimised
-            strategies and enables you to diversify your investments while
-            minimising the risk of permanent loss. Discover how we can help you
-            maximise your profits, through a simple and intuitive interface.
+            DeFi offers some of the best yields available on the planet, but they’re often hidden behind complex UIs designed for tech people. <br />
+            <br />
+            <strong>Supayield is here to fix that.</strong>
           </p>
         </div>
 
