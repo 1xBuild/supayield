@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { ModeToggle } from "./theme-toggle";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Github, Menu } from "lucide-react";
 import {
   Sheet,
@@ -17,12 +17,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { mainnet } from "viem/chains";
-import { useSwitchChain, useAccount } from "wagmi";
-import { neoxTestnet } from "@/main";
-import { connect } from '@wagmi/core'
-import { injected } from '@wagmi/connectors'
-import { config } from "@/main";
 
 export const NAVLINKS = [
   {
@@ -62,17 +56,6 @@ export const NAVLINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { switchChain } = useSwitchChain()
-  const { address, chain } = useAccount()
-
-  console.log("address : ", address);
-  console.log("chain :", chain);
-  useEffect(() => {
-    if (chain?.id !== neoxTestnet.id) {
-      console.log("switchChain");
-      switchChain({ chainId: neoxTestnet.id });
-    }
-  }, [chain]);
 
   return (
     <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-1 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
@@ -137,18 +120,6 @@ export default function Navbar() {
       <NavigationMenu className="hidden lg:block mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem></NavigationMenuItem>
-
-          {!address && config && 
-            <Button onClick={() => connect(config, { connector: injected() })}>
-              Connect Wallet
-            </Button>
-          }
-          {address && chain?.id !== neoxTestnet.id && (
-            <Button onClick={() => switchChain({ chainId: neoxTestnet.id })}>
-              Switch to NeoX Testnet
-            </Button>
-          )}
-
           <NavigationMenuItem>
             {NAVLINKS.map(({ href, title }) => {
               const isAnchorLink = href.startsWith("/#");
