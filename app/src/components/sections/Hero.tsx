@@ -49,7 +49,7 @@ const HeroSection = () => {
         </div>
 
         <div className="relative group mt-14">
-          <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-secondary/50 dark:bg-primary/50 rounded-full blur-3xl"></div>
+          <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-accent/50 rounded-full blur-3xl"></div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             data-name="Layer 1"

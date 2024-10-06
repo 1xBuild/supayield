@@ -24,7 +24,14 @@ export default function EarnNeoX() {
                 My Address
               </h2>
               <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
-                <p>{address}</p>
+                <p>
+                  My Address: {address.slice(0, 6)}...{address.slice(-4)}
+                </p>
+                {address && config && (
+                  <Button onClick={() => disconnect(config)} className="w-1/3">
+                    Disconnect Wallet
+                  </Button>
+                )}
               </div>
             </div>
           )}
@@ -41,14 +48,46 @@ export default function EarnNeoX() {
             Balance
           </h2>
           <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
-            <Button className="w-1/3 text-primary">Refresh</Button>
+            <input
+              type="text"
+              className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono border border-gray-300"
+              disabled
+              placeholder={address ? "0 ETH" : "Please connect your wallet"}
+            />
+            {address && (
+              <Button color="secondary" className="w-1/3">
+                Refresh
+              </Button>
+            )}
           </div>
 
-          <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
-            Deposit to
+          <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70 mt-8">
+            Deposit to <br />
+            <span className="text-muted-foreground text-sm">
+              Up to <strong>3,11% </strong>APY
+            </span>
           </h2>
-          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
-            <Button className="w-1/3 text-primary">Deposit</Button>
+          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-6">
+            {address && (
+              <Button color="secondary" className="w-1/3">
+                Deposit
+              </Button>
+            )}
+          </div>
+
+          <div>
+            <p>
+              ⚡️ We received your deposit, see the tx on :{" "}
+              <a
+                href={`https://app.fuel.network/tx/#`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                Explorer
+              </a>
+            </p>
+            <p>💰 Your earned LoremIpsum $LoremIpsum</p>
           </div>
 
           <div className="space-y-4">
@@ -62,19 +101,10 @@ export default function EarnNeoX() {
                 </Button>
               )}
 
-              {address && config && (
-                <Button
-                onClick={() => disconnect(config)}
-                  className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6"
-                >
-                  Disconnect Wallet
-                </Button>
-              )}
-
               {address && chain?.id !== neoxTestnet.id && (
                 <Button
                   onClick={() => switchChain({ chainId: neoxTestnet.id })}
-                  className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6"
+                  className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6 p-8"
                 >
                   Switch to NeoX Testnet
                 </Button>
