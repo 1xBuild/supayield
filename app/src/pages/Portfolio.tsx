@@ -28,10 +28,10 @@ const Portfolio: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-6xl font-bold text-primary mb-8">
+          <div className="text-2xl text-primary mb-8">
             {formattedBalanceEth ? `${formattedBalanceEth} ETH` : "0 ETH"}
           </div>
-          <div className="text-6xl font-bold text-primary mb-8">
+          <div className="text-2xl text-primary mb-8">
             {formattedBalanceSupa ? `${formattedBalanceSupa} $SUPA` : "0 $SUPA"}
           </div>
 

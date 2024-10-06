@@ -1,4 +1,9 @@
-import { useWallet, useBalance, useIsConnected, useDisconnect } from "@fuels/react";
+import {
+  useWallet,
+  useBalance,
+  useIsConnected,
+  useDisconnect,
+} from "@fuels/react";
 import { useEffect, useState } from "react";
 import { useWalletContext } from "../../contexts/walletContext";
 import { AssetId, BN, bn, Provider, Wallet, WalletUnlocked } from "fuels";
@@ -26,7 +31,8 @@ export default function WalletComponent() {
   const [contract, setContract] = useState<TestContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
-  const { setAddress, setBalanceEth, setBalanceSupa, balanceSupa } = useWalletContext();
+  const { setAddress, setBalanceEth, setBalanceSupa, balanceSupa } =
+    useWalletContext();
   const { disconnect } = useDisconnect();
   const [txid, setTxid] = useState<string | null>(null);
 
@@ -247,14 +253,17 @@ export default function WalletComponent() {
       if (ethAmount && usdtAmount) {
         try {
           const result = await addLiquidity(ethAmount, usdtAmount);
-          if (result) setTxid(result?.id);
+
+          if (result) {
+            setTxid(result?.id);
+          }
+          
           toast.success(`🎉 Well done you deposited ${amount} ETH !
           `);
         } catch (error) {
           toast.error("⚠️ Failed to add liquidity");
           console.error(error);
         }
-
       }
       console.log("deposit done");
     } catch (error) {
@@ -283,9 +292,15 @@ export default function WalletComponent() {
       ) : (
         <div>
           <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
-            <p>My Address: {address.slice(0, 6)}...{address.slice(-4)}</p>
+            <p>
+              My Address: {address.slice(0, 6)}...{address.slice(-4)}
+            </p>
             {isConnected && (
-              <Button onClick={() => disconnect()} className="w-1/3" color="secondary">
+              <Button
+                onClick={() => disconnect()}
+                className="w-1/3"
+                color="secondary"
+              >
                 Disconnect
               </Button>
             )}
@@ -303,10 +318,14 @@ export default function WalletComponent() {
             className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
             disabled
             placeholder={isConnected ? "0 ETH" : "Please connect your wallet"}
-            style={{'border': "1px solid gray"}}
+            style={{ border: "1px solid gray" }}
           />
           {isConnected && (
-            <Button color="secondary" onClick={() => refetch()} className="w-1/3">
+            <Button
+              color="secondary"
+              onClick={() => refetch()}
+              className="w-1/3"
+            >
               Refresh
             </Button>
           )}
@@ -315,7 +334,9 @@ export default function WalletComponent() {
       <div>
         <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70 mt-8">
           Deposit <br />
-          <span className="text-muted-foreground text-sm">Up to <strong>3,11% </strong>APY</span>
+          <span className="text-muted-foreground text-sm">
+            Up to <strong>3,11% </strong>APY
+          </span>
         </h2>
         <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
           <input
@@ -324,9 +345,11 @@ export default function WalletComponent() {
             value={depositAmount}
             onChange={(e) => setDepositAmount(parseFloat(e.target.value) || 0)}
             className="w-2/3 bg-gray-800 custom-input dark:text-black rounded-md px-2 py-1 mr-3 truncate font-mono"
-            style={{'border': "1px solid gray"}}
+            style={{ border: "1px solid gray" }}
           />
-          {isLoading ? <Loader className="mx-auto" /> : (
+          {isLoading ? (
+            <Loader className="mx-auto" />
+          ) : (
             <span className="w-1/3">
               {isConnected && (
                 <Button
@@ -341,8 +364,18 @@ export default function WalletComponent() {
         </div>
         {txid && (
           <div>
-            <p>⚡️ We received your deposit, see the tx on : <a href={`https://app.fuel.network/tx/${txid}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Fuel Explorer</a></p>
-            <p>💰 Your earned {balanceSupa ? balanceSupa/1000 : 0} $SUPA</p>
+            <p>
+              ⚡️ We received your deposit, see the tx on :{" "}
+              <a
+                href={`https://app.fuel.network/tx/${txid}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                Fuel Explorer
+              </a>
+            </p>
+            <p>💰 Your earned {balanceSupa ? balanceSupa / 1000 : 0} $SUPA</p>
           </div>
         )}
       </div>
