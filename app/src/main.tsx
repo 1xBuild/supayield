@@ -7,10 +7,10 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "fuels";
 import Router from "./config/router";
 import { providerUrl } from "./lib";
-import { WalletProvider} from "./contexts/walletContext"
+import { WalletProvider } from "./contexts/walletContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import { http, createConfig, WagmiProvider } from 'wagmi'
+import { http, createConfig, WagmiProvider } from "wagmi";
 import { defineChain } from 'viem'
 
 export const neoxTestnet = defineChain({
@@ -47,7 +47,7 @@ export const config = createConfig({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <FuelProvider theme="dark" fuelConfig={{ connectors }}>
+      <FuelProvider fuelConfig={{ connectors }}>
         <WalletProvider>
           <WagmiProvider config={config}>
             <Router />

@@ -11,10 +11,6 @@ interface sponsorsProps {
 const sponsors: sponsorsProps[] = [
   {
     icon: "Container",
-    name: "Hackathon",
-  },
-  {
-    icon: "Container",
     name: "Encode",
   },
   {
@@ -27,7 +23,11 @@ const sponsors: sponsorsProps[] = [
   },
   {
     icon: "Container",
-    name: "Supayield",
+    name: "Neo X",
+  },
+  {
+    icon: "Container",
+    name: "Carrot Swap",
   },
 ];
 

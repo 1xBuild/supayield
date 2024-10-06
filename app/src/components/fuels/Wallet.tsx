@@ -1,4 +1,4 @@
-import { useDisconnect, useWallet, useBalance } from "@fuels/react";
+import { useWallet, useBalance, useIsConnected } from "@fuels/react";
 import { useEffect, useState } from "react";
 import { useWalletContext } from "../../contexts/walletContext";
 import { AssetId, BN, bn, Provider, Wallet, WalletUnlocked } from "fuels";
@@ -17,7 +17,7 @@ import { IdentityInput } from "@/sway-api/contracts/TestContract.ts";
 import { toast } from "react-toastify";
 
 export default function WalletComponent() {
-  const { disconnect } = useDisconnect();
+  const { isConnected } = useIsConnected();
   const { wallet } = useWallet();
   const address = wallet?.address.toB256() || "";
   const { balance, refetch } = useBalance({ address });
@@ -262,22 +262,20 @@ export default function WalletComponent() {
 
   return (
     <>
-      <div>
-        <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
-          Address
-        </h2>
-        <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
-          <input
-            type="text"
-            value={address}
-            className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
-            disabled
-          />
-          <Button onClick={() => disconnect()} className="w-1/3 text-primary">
-            Disconnect
-          </Button>
+      {!isConnected ? (
+        <p className="mb-1 text-center text-xl font-medium dark:text-zinc-300/70">
+          <strong>Please connect your wallet for use App</strong>
+        </p>
+      ) : (
+        <div>
+          <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
+            My Address
+          </h2>
+          <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
+            <p>{address}</p>
+          </div>
         </div>
-      </div>
+      )}
       <div>
         <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
           Balance
@@ -296,7 +294,7 @@ export default function WalletComponent() {
       </div>
       <div>
         <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
-          Deposit Amount
+          Deposit Up to <strong>3,11% </strong>APY
         </h2>
         <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
           <input
