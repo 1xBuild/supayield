@@ -1,15 +1,15 @@
 import { useDisconnect, useWallet, useBalance } from "@fuels/react";
 import { useEffect, useState } from "react";
-import { bn } from 'fuels';
-
+import { AssetId, BN, bn, Provider, Wallet, WalletUnlocked } from 'fuels';
+import { MiraAmm, PoolId, ReadonlyMiraAmm } from 'mira-dex-ts';
 import Button from "./Button";
 import LocalFaucet from "./LocalFaucet";
-import { contractId, isLocal, renderFormattedBalance } from "../../lib.tsx";
+import { contractId, isLocal, providerUrl, renderFormattedBalance } from "../../lib.tsx";
 import { TestContract } from "../../sway-api/index.ts";
 import { Address } from "fuels";
 import { IdentityInput } from "@/sway-api/contracts/TestContract.ts";
 
-export default function Wallet() {
+export default function WalletComponent() {
   const { disconnect } = useDisconnect();
   const { wallet } = useWallet();
   const address = wallet?.address.toB256() || "";
@@ -18,6 +18,29 @@ export default function Wallet() {
   const [contract, setContract] = useState<TestContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
+  const [miraAmm, setMiraAmm] = useState<MiraAmm | null>(null);
+  const [readonlyMiraAmm, setReadonlyMiraAmm] = useState<ReadonlyMiraAmm | null>(null);
+  const [adminWallet, setAdminWallet] = useState<WalletUnlocked | null>(null);
+
+  const ETH_ADDRESS = "0xf8f8b6283d7fa5b672b530cbb84fcccb4ff8dc40f8176ef4544ddb1f1952ad07";
+  const USDT_ADDRESS = "0x3f007b72f7bcb9b1e9abe2c76e63790cd574b7c34f1c91d6c2f407a5b55676b9";
+  const FUEL_DECIMALS = 9;
+  const DEFAULT_SLIPPAGE = 1;
+  const DEFAULT_GAS_LIMIT = 1_000_000;
+
+  async function initMira() {
+    const provider = await Provider.create(providerUrl);
+    const adminWallet = Wallet.fromMnemonic(process.env.VITE_WALLET_SEED || "", undefined, undefined, provider);
+    const miraAmm = new MiraAmm(adminWallet);
+    const readonlyMiraAmm = new ReadonlyMiraAmm(provider);
+    setAdminWallet(adminWallet);
+    setMiraAmm(miraAmm);
+    setReadonlyMiraAmm(readonlyMiraAmm);
+  }
+
+  useEffect(() => {
+    initMira();
+  }, []);
 
   useEffect(() => {
     if (wallet) {
@@ -39,44 +62,130 @@ export default function Wallet() {
     }
   }, [contract, total_assets]);
 
-  async function deposit(amount: number) {
-    console.log("wallet", wallet);
-    console.log("contract", contract);
-    console.log("address", address);
-    if (!wallet || !contract || !address) return;
-    setIsLoading(true);
+  async function swapETHtoUSDT(amountInFloat: number, slippageInPercent: number = DEFAULT_SLIPPAGE): Promise<[BN, BN, string] | undefined> {
+    console.log("swapETHtoUSDT", amountInFloat, slippageInPercent);
+    if (!adminWallet || !readonlyMiraAmm || !miraAmm) return;
 
     try {
-      const walletAddress = Address.fromString(address);
-      const receiverIdentity: IdentityInput = {
-        Address: { bits: walletAddress.toB256() }
-      };
-      const baseAssetId = '0xf8f8b6283d7fa5b672b530cbb84fcccb4ff8dc40f8176ef4544ddb1f1952ad07'; // Base Eth
-      const vaultSubId = '0x0000000000000000000000000000000000000000000000000000000000000001';
-      const amountToForward = bn(amount).mul(bn(10).pow(18));
+      const amountIn = bn(Math.floor(amountInFloat * 10 ** FUEL_DECIMALS));
+
+      const assetIdEth = Address.fromString(ETH_ADDRESS);
+      const assetIdUsdt = Address.fromString(USDT_ADDRESS);
+      const assetIn: AssetId = { bits: assetIdEth.toB256() };
+      const assetOut: AssetId = { bits: assetIdUsdt.toB256() };
+      const poolEthUsdc: PoolId = [assetIn, assetOut, false];
       
-      console.log("baseAssetId", baseAssetId);
-      console.log("amount", amount);
-      console.log("receiverIdentity", receiverIdentity);
-      console.log("vaultSubId", vaultSubId);
-      console.log("amountToForward", amountToForward);
+      // Preview the swap to get the expected output amount
+      const expectedOutputAmount = await readonlyMiraAmm.previewSwapExactInput(assetIn, amountIn, [poolEthUsdc]);
+      console.log("Expected output amount:", expectedOutputAmount.toString());
+
+      // Set amountOutMin to 99% of the expected output to account for slippage
+      const amountOutMin = expectedOutputAmount[1].mul(100 - slippageInPercent).div(100);
+      console.log("Amount out min:", amountOutMin.toString());
+
+      const deadline = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
+      const txParams = {
+        gasLimit: DEFAULT_GAS_LIMIT,
+      };
+
+      const txRequest = await miraAmm.swapExactInput(
+        amountIn, assetIn, amountOutMin, [poolEthUsdc], deadline, txParams
+      );
+
+      // Execute the transaction
+      const response = await adminWallet.sendTransaction(txRequest);
+      const result = await response.wait();
+      console.log("Transaction result:", result);
+      console.log("Transaction status:", result.status); // This is the transaction status (to display)
+      console.log("Transaction transactionId:", result.id); // This is the transaction ID (to display)]
+      return [amountIn, amountOutMin, result.id];
+    } catch (error) {
+      console.error("Error in swap function:", error);
+      // TODO: add toast
+      return;
+    }
+  }
+
+  async function sendDepositToTemporaryWallet(amount: number) {
+    if (!wallet || !contract || !address || !miraAmm) return;
+    console.log("sendDepositToTemporaryWallet", amount);
+
+    try {
+      const adminWalletAddress = Address.fromString(address);
+      const receiverIdentity: IdentityInput = {
+        Address: { bits: adminWalletAddress.toB256() }
+      };
+      const vaultSubId = '0x0000000000000000000000000000000000000000000000000000000000000001';
+      const amountToForward = bn(Math.floor(amount * 10 ** FUEL_DECIMALS));
       
       const call = await contract.functions
         .deposit(receiverIdentity, vaultSubId)
         .callParams({
-          forward: {amount: amountToForward, assetId: baseAssetId},
+          forward: {amount: amountToForward, assetId: ETH_ADDRESS},
         })
         .call();
-      // transactionSubmitNotification(call.transactionId);
       const result = await call.waitForResult();
       console.log("result", result);
-      // transactionSuccessNotification(result.transactionId);
-      // setCounter(result.value.toNumber());
+      console.log("transactionId", result.transactionId); // This is the transaction ID (to display)
     } catch (error) {
       console.error(error);
-      // errorNotification("Error incrementing counter");
+      // TODO: add toast
     }
-    setIsLoading(false);
+  }
+
+  async function addLiquidity(amount0: BN, amount1: BN) {
+    console.log("addLiquidity", amount0, amount1);
+    if (!adminWallet || !contract || !address || !miraAmm) return;
+
+    const assetIdEth = Address.fromString(ETH_ADDRESS);
+    const assetIdUsdt = Address.fromString(USDT_ADDRESS);
+    const assetIn: AssetId = { bits: assetIdEth.toB256() };
+    const assetOut: AssetId = { bits: assetIdUsdt.toB256() };
+    const poolEthUsdc: PoolId = [assetIn, assetOut, false];
+
+    const amount0Desired = amount0;
+    const amount1Desired = amount1;
+    const amount0Min = bn(0);
+    const amount1Min = bn(0);
+
+    const deadline = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
+    const txParams = {
+      gasLimit: DEFAULT_GAS_LIMIT,
+    };
+
+    try {
+      const txRequest = await miraAmm.addLiquidity(
+        poolEthUsdc, amount0Desired, amount1Desired, amount0Min, amount1Min, deadline, txParams
+      );
+      const response = await adminWallet.sendTransaction(txRequest);
+      const result = await response.wait();
+      console.log("Transaction result:", result);
+      console.log("Transaction status:", result.status); // This is the transaction status (to display)
+      console.log("Transaction transactionId:", result.id); // This is the transaction ID (to display)
+    } catch (error) {
+      console.error(error);
+      // TODO: add toast
+    }
+  }
+
+  async function deposit(amount: number) {
+    if (!wallet || !contract || !address || !miraAmm) return;
+    setIsLoading(true);
+
+    try {
+      console.log("deposit", amount);
+      await sendDepositToTemporaryWallet(amount);
+      const [ethAmount, usdtAmount] = await swapETHtoUSDT(depositAmount / 2) ?? [];
+      console.log("ethAmount to add liquidity", ethAmount);
+      console.log("usdtAmount to add liquidity", usdtAmount);
+      if (ethAmount && usdtAmount) await addLiquidity(ethAmount, usdtAmount);
+      console.log("deposit done");
+    } catch (error) {
+      console.error(error);
+      // TODO: add toast
+    } finally {
+      setIsLoading(false);
+    }
   }
 
 
