@@ -18,8 +18,14 @@ const HeroSection = () => {
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
+            
             <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              <Link to="/earn-fuel">Get Started</Link>
+              <Link to="/earn-fuel">Get Started - <strong>Fuel</strong></Link>
+              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+            </Button>
+
+            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+              <Link to="/earn-neo-x">Get Started - <strong>NeoX</strong></Link>
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
 

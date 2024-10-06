@@ -24,6 +24,10 @@ export const NAVLINKS = [
     href: "/earn-fuel",
   },
   {
+    title: "Earn-NeoX",
+    href: "/earn-neox",
+  },
+  {
     title: "Portfolio",
     href: "/portfolio",
   },

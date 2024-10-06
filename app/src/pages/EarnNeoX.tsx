@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "@/components/ui/button";
 import { useSwitchChain, useAccount } from "wagmi";
 import { connect } from '@wagmi/core'
