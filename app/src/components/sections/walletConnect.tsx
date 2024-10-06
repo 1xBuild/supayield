@@ -2,7 +2,6 @@ import {
   useConnectUI,
   useIsConnected,
   useNetwork,
-  useDisconnect,
 } from "@fuels/react";
 import { useEffect } from "react";
 import { useRouter } from "@/hooks/useRouter";
@@ -13,7 +12,6 @@ import WalletComponent from "@/components/fuels/Wallet";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function WalletConnect() {
-  const { disconnect } = useDisconnect();
   const { connect } = useConnectUI();
   const { isConnected, refetch } = useIsConnected();
   const { network } = useNetwork();
@@ -62,15 +60,6 @@ export default function WalletConnect() {
               {isConnected && view === "faucet" && <Faucet />}
             </div>
           </div>
-
-          {isConnected && (
-            <Button
-              onClick={() => disconnect()}
-              className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6"
-            >
-              Disconnect
-            </Button>
-          )}
 
           {!isConnected && (
             <Button
