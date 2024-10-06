@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "fuels";
 import Router from "./config/router";
 import { providerUrl } from "./lib";
-import { WalletProvider} from "./contexts/walletContext"
+import { WalletProvider } from "./contexts/walletContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
@@ -21,21 +21,21 @@ const connectors = defaultConnectors({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <FuelProvider theme="dark" fuelConfig={{ connectors }}>
+      <FuelProvider fuelConfig={{ connectors }}>
         <WalletProvider>
-        <Router />
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+          <Router />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </WalletProvider>
       </FuelProvider>
     </QueryClientProvider>
