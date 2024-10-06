@@ -35,8 +35,16 @@ export const NAVLINKS = [
     title: "Documentation",
     href: "/docs",
   },
-  // Add others navigation
 ];
+
+if (location.pathname === '/fuel') {
+  NAVLINKS.splice(1, 1);
+}
+
+if (location.pathname === '/neox') {
+  NAVLINKS.shift();
+}
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

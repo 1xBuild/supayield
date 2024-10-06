@@ -26,6 +26,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/fuel",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/neox",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
         path: "/docs",
         element: (
           <Suspense fallback={<Loading />}>

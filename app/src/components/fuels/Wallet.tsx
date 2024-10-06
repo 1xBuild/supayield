@@ -253,9 +253,11 @@ export default function WalletComponent() {
       if (ethAmount && usdtAmount) {
         try {
           const result = await addLiquidity(ethAmount, usdtAmount);
+
           if (result) {
             setTxid(result?.id);
           }
+          
           toast.success(`🎉 Well done you deposited ${amount} ETH !
           `);
         } catch (error) {
