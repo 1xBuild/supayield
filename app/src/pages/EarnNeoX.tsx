@@ -80,7 +80,7 @@ export default function EarnNeoX() {
               type="text"
               className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono border border-gray-300"
               disabled
-              placeholder={address ? "0 ETH" : "Please connect your wallet"}
+              placeholder={address ? "0.5 ETH" : "Please connect your wallet"}
             />
             {address && (
               <Button color="secondary" className="w-1/3">
