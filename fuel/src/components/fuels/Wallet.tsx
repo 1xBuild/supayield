@@ -124,9 +124,9 @@ export default function WalletComponent() {
     console.log("sendDepositToTemporaryWallet", amount);
 
     try {
-      const adminWalletAddress = Address.fromString(address);
+      const userWalletAddress = Address.fromString(address);
       const receiverIdentity: IdentityInput = {
-        Address: { bits: adminWalletAddress.toB256() }
+        Address: { bits: userWalletAddress.toB256() }
       };
       const vaultSubId = '0x0000000000000000000000000000000000000000000000000000000000000001';
       const amountToForward = bn(Math.floor(amount * 10 ** FUEL_DECIMALS));
