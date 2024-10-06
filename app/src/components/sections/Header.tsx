@@ -36,6 +36,7 @@ export const NAVLINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-1 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
       <Link to="/" className="font-bold text-lg flex items-center">
@@ -93,7 +94,6 @@ export default function Navbar() {
       <NavigationMenu className="hidden lg:block mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem></NavigationMenuItem>
-
           <NavigationMenuItem>
             {NAVLINKS.map(({ href, title }) => {
               return (
