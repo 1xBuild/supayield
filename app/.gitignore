@@ -39,3 +39,7 @@ playwright-report
 # src/sway-api/predicates
 # src/sway-api/scripts
 # src/sway-api/index.ts
+
+# Hardhat files
+cache
+artifacts
