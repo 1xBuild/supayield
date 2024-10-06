@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
+  const location = useLocation();
+
   return (
     <section className="container w-full">
       <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
@@ -16,19 +18,28 @@ const HeroSection = () => {
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
             The Super Simple Yield Aggregator <br />
             <br />
-            <strong>Live on Fuel and NeoX 🚀</strong>
+            {location.pathname === '/fuel' ? (
+              <strong>Live on Fuel 🚀</strong>
+            ) : location.pathname === '/neox' ? (
+              <strong>Live on NeoX 🚀</strong>
+            ) : (
+              <strong>Live on Fuel and NeoX 🚀</strong>
+            )}
           </p>
 
           <div className="flex justify-center">
-            <Button className="w-1/2 font-bold group/arrow mr-4">
-              <Link to="/earn-fuel">Get Started - <strong>Fuel</strong></Link>
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
-            </Button>
-
-            <Button className="w-1/2 font-bold group/arrow">
-              <Link to="/earn-neo-x">Get Started - <strong>NeoX</strong></Link>
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
-            </Button>
+            {location.pathname !== '/neox' &&
+              <Button className="w-1/2 font-bold group/arrow mr-4">
+                <Link to="/earn-fuel">Get Started - <strong>Fuel</strong></Link>
+                <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+              </Button>
+            }
+            {location.pathname !== '/fuel' &&
+              <Button className="w-1/2 font-bold group/arrow mr-4">
+                <Link to="/earn-neo-x">Get Started - <strong>Neo X</strong></Link>
+                <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+              </Button>
+            }
           </div>
 
           <div style={{ marginTop: "10px" }}>
