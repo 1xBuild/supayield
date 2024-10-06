@@ -1,4 +1,4 @@
-import WalletConnect from "@/components/sections/walletConnect"
+import HeroSection from "@/components/sections/Hero"
 import BenefitsSection from "@/components/sections/Benefits"
 import Features from "@/components/sections/Features"
 import Team from "@/components/sections/Team"
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <SponsorsSection />
-      <WalletConnect />
+      <HeroSection />
       <BenefitsSection />
       <Features />
       <Team />

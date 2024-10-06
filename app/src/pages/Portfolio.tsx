@@ -1,15 +1,23 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useWalletContext } from "../contexts/walletContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Portfolio: React.FC = () => {
-  const { address, balance } = useWalletContext();
+  const { address, balanceEth, balanceSupa } = useWalletContext();
 
-  function formatBalance(balance: number | null, decimals = 18) {
+  console.log("SupaBalance in portfolio", balanceSupa)
+
+  function formatBalanceEth(balance: number | null, decimals = 9) {
     if (balance === null) return "0";
     return (balance / Math.pow(10, decimals)).toFixed(4);
   }
 
-  const formattedBalance = formatBalance(balance, 18);
+  function formatBalanceSupa(balance: number | null) {
+    if (balance === null) return "0";
+    return (balance / 1000).toFixed(4);
+  }
+
+  const formattedBalanceEth = formatBalanceEth(balanceEth, 9);
+  const formattedBalanceSupa = formatBalanceSupa(balanceSupa);
 
   return (
     <div className="min-h-screen bg-background p-8">
@@ -21,8 +29,12 @@ const Portfolio: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="text-6xl font-bold text-primary mb-8">
-            {`${formattedBalance} supa`}
+            {formattedBalanceEth ? `${formattedBalanceEth} ETH` : "0 ETH"}
           </div>
+          <div className="text-6xl font-bold text-primary mb-8">
+            {formattedBalanceSupa ? `${formattedBalanceSupa} SUPA` : "0 SUPA"}
+          </div>
+
           <div className="space-y-6">
             <h2 className="text-xl font-semibold text-foreground">
               Wallet Address
@@ -30,6 +42,7 @@ const Portfolio: React.FC = () => {
             <div className="text-muted-foreground text-base">
               {address ? address : "No address connected"}
             </div>
+
             <h2 className="text-xl font-semibold text-foreground">
               Your Opportunities
             </h2>
