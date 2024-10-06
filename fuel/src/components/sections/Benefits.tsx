@@ -13,25 +13,25 @@ const benefitList: BenefitsProps[] = [
     icon: "Container",
     title: "Reducing Impermanent Losses (IL)",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Protect your investments by minimising permanent losses with our intelligent asset management strategies.",
   },
   {
     icon: "Container",
     title: "Simple, accessible interface",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.",
+      "Manage your DeFi yields easily with an intuitive interface inspired by UX best practice.",
   },
   {
     icon: "Container",
     title: "Strategy diversification",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam",
+      "Maximise your returns by diversifying your investments across several pools and strategies.",
   },
   {
     icon: "Container",
     title: "Transparent and immediate follow-up",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Track your investments in real time with transparent, accurate reports that you can access at any time.",
   },
 ];
 

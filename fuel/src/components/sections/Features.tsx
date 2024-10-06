@@ -13,7 +13,7 @@ const featureList: FeaturesProps[] = [
     icon: "TabletSmartphone",
     title: "Mobile Friendly",
     description:
-      "Our application is entirely mobile-friendly, allowing you to monitor and manage your DeFi investments wherever you are, at any time.",
+      "Our app is designed to be accessible from any device, although we're still working on optimizing the mobile experience. You can already track and manage your DeFi investments, but for the best experience we recommend using a desktop computer for the time being.",
   },
   {
     icon: "BadgeCheck",
