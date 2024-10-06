@@ -46,3 +46,9 @@ playwright-report
 # Hardhat files
 cache
 artifacts
+
+# Vercel
+.vercel
+
+# Environment variables
+.env
