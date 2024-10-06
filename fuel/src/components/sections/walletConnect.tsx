@@ -64,7 +64,7 @@ export default function App() {
               </div>
 
               <div className="bg-gray-700 rounded-lg p-4">
-                {view === "wallet" && <Wallet />}
+                {view === "wallet" && <WalletComponent />}
                 {view === "faucet" && <Faucet />}
               </div>
             </section>

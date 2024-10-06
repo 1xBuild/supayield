@@ -21,7 +21,6 @@ export default function WalletComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
   const { setAddress, setBalance } = useWalletContext();
-  
 
   const [miraAmm, setMiraAmm] = useState<MiraAmm | null>(null);
   const [readonlyMiraAmm, setReadonlyMiraAmm] = useState<ReadonlyMiraAmm | null>(null);
