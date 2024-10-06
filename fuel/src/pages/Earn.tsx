@@ -41,9 +41,12 @@ export default function Earn() {
                 </Button>
               </div>
             </div>
-            <Button className="w-full bg-accent hover:bg-accent-foreground hover:text-accent text-accent-foreground font-semibold py-3 rounded-full">
+            <button
+              className="w-full bg-gray-400 text-gray-700 font-semibold py-3 rounded-full cursor-not-allowed opacity-50"
+              disabled
+            >
               Connect Wallet
-            </Button>
+            </button>
           </CardContent>
         </Card>
       </div>

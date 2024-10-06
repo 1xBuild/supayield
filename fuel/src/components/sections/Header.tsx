@@ -83,20 +83,28 @@ export default function Navbar() {
                   </Link>
                 </SheetTitle>
               </SheetHeader>
-              
+
               {/* Mobile Navigation */}
               <div className="flex flex-col gap-2">
-                {NAVLINKS.map(({ href, title }) => (
-                  <Button
-                    key={href}
-                    onClick={() => setIsOpen(false)}
-                    asChild
-                    variant="ghost"
-                    className="justify-start text-base"
-                  >
-                    <Link to={href}>{title}</Link>
-                  </Button>
-                ))}
+                {NAVLINKS.map(({ href, title }) => {
+                  const isAnchorLink = href.startsWith("/#");
+
+                  return (
+                    <Button
+                      key={href}
+                      onClick={() => setIsOpen(false)}
+                      asChild
+                      variant="ghost"
+                      className="justify-start text-base"
+                    >
+                      {isAnchorLink ? (
+                        <a href={href}>{title}</a>
+                      ) : (
+                        <Link to={href}>{title}</Link>
+                      )}
+                    </Button>
+                  );
+                })}
               </div>
             </div>
 
@@ -113,13 +121,23 @@ export default function Navbar() {
           <NavigationMenuItem></NavigationMenuItem>
 
           <NavigationMenuItem>
-            {NAVLINKS.map(({ href, title }) => (
-              <NavigationMenuLink key={href} asChild>
-                <Link to={href} className="text-base px-2">
-                  {title}
-                </Link>
-              </NavigationMenuLink>
-            ))}
+            {NAVLINKS.map(({ href, title }) => {
+              const isAnchorLink = href.startsWith("/#");
+
+              return (
+                <NavigationMenuLink key={href} asChild>
+                  {isAnchorLink ? (
+                    <a href={href} className="text-base px-2">
+                      {title}
+                    </a>
+                  ) : (
+                    <Link to={href} className="text-base px-2">
+                      {title}
+                    </Link>
+                  )}
+                </NavigationMenuLink>
+              );
+            })}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

@@ -1,5 +1,6 @@
 import { useDisconnect, useWallet, useBalance } from "@fuels/react";
 import { useEffect, useState } from "react";
+import { useWalletContext } from "../../contexts/walletContext";
 import { AssetId, BN, bn, Provider, Wallet, WalletUnlocked } from 'fuels';
 import { MiraAmm, PoolId, ReadonlyMiraAmm } from 'mira-dex-ts';
 import Button from "./Button";
@@ -8,6 +9,7 @@ import { contractId, isLocal, providerUrl, renderFormattedBalance } from "../../
 import { TestContract } from "../../sway-api/index.ts";
 import { Address } from "fuels";
 import { IdentityInput } from "@/sway-api/contracts/TestContract.ts";
+import { toast } from "react-toastify";
 
 export default function WalletComponent() {
   const { disconnect } = useDisconnect();
@@ -18,6 +20,9 @@ export default function WalletComponent() {
   const [contract, setContract] = useState<TestContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
+  const { setAddress, setBalance } = useWalletContext();
+  
+
   const [miraAmm, setMiraAmm] = useState<MiraAmm | null>(null);
   const [readonlyMiraAmm, setReadonlyMiraAmm] = useState<ReadonlyMiraAmm | null>(null);
   const [adminWallet, setAdminWallet] = useState<WalletUnlocked | null>(null);
@@ -41,13 +46,22 @@ export default function WalletComponent() {
   useEffect(() => {
     initMira();
   }, []);
-
+    
   useEffect(() => {
     if (wallet) {
       const testContract = new TestContract(contractId, wallet);
       setContract(testContract);
     }
   }, [wallet]);
+
+  useEffect(() => {
+    if (address) {
+      setAddress(address);
+    }
+    if (balance && balance.toNumber) {
+      setBalance(balance.toNumber());
+    }
+  }, [address, balance, setAddress, setBalance]);
 
   // Initialize contract
   useEffect(() => {
@@ -125,6 +139,7 @@ export default function WalletComponent() {
         })
         .call();
       const result = await call.waitForResult();
+      toast.success(`🎉 Well done deposite ${amount} ETH !`);
       console.log("result", result);
       console.log("transactionId", result.transactionId); // This is the transaction ID (to display)
     } catch (error) {
@@ -181,6 +196,7 @@ export default function WalletComponent() {
       if (ethAmount && usdtAmount) await addLiquidity(ethAmount, usdtAmount);
       console.log("deposit done");
     } catch (error) {
+      toast.error("Error during deposit");
       console.error(error);
       // TODO: add toast
     } finally {
@@ -211,7 +227,7 @@ export default function WalletComponent() {
             className="w-2/3 bg-gray-800 rounded-md mb-2 md:mb-0 px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => disconnect()} className="w-1/3">
+          <Button onClick={() => disconnect()} className="w-1/3 text-primary">
             Disconnect
           </Button>
         </div>
@@ -227,7 +243,7 @@ export default function WalletComponent() {
             className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => refetch()} className="w-1/3">
+          <Button onClick={() => refetch()} className="w-1/3 text-primary">
             Refresh
           </Button>
         </div>
@@ -240,9 +256,9 @@ export default function WalletComponent() {
           type="number" step="any"
           value={depositAmount}
           onChange={(e) => setDepositAmount(parseFloat(e.target.value) || 0)}
-          className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
+          className="w-2/3 bg-gray-800 custom-input dark:text-black rounded-md px-2 py-1 mr-3 truncate font-mono"
         />
-        <Button onClick={() => deposit(depositAmount)} className="w-1/3">
+        <Button onClick={() => deposit(depositAmount)} className="w-1/3 text-primary">
           Deposit
         </Button>
         {isLoading && <p>Loading...</p>}

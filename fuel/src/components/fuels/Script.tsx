@@ -48,7 +48,7 @@ export default function Script() {
 
   return (
     <>
-      <div>
+      <div className="space-y-2">
         <p>
           Scripts are runnable bytecode on the chain which execute once to
           perform some task. Scripts can return a single value of any type. You
@@ -101,7 +101,7 @@ export default function Script() {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button className="w-full" onClick={submit} disabled={isLoading}>
+        <Button className="w-full text-primary" onClick={submit} disabled={isLoading}>
           Submit
         </Button>
       </div>

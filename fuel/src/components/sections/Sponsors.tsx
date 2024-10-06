@@ -15,7 +15,7 @@ const sponsors: sponsorsProps[] = [
   },
   {
     icon: "Container",
-    name: "encode",
+    name: "Encode",
   },
   {
     icon: "Container",
@@ -23,11 +23,11 @@ const sponsors: sponsorsProps[] = [
   },
   {
     icon: "Container",
-    name: "Neo",
+    name: "Mira Ly",
   },
   {
     icon: "Container",
-    name: "Grind",
+    name: "Supayield",
   },
 ];
 

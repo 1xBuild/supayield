@@ -128,7 +128,7 @@ export default function Predicate() {
             className="w-2/3 bg-gray-800 rounded-md mb-2 md:mb-0 px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button className="w-1/3" onClick={copyAddress}>
+          <Button className="w-1/3 text-primary" onClick={copyAddress}>
             Copy
           </Button>
         </div>
@@ -151,7 +151,7 @@ export default function Predicate() {
           />
           <Button
             onClick={transferToPredicate}
-            className="w-1/3"
+            className="w-1/3 text-primary"
             disabled={isLoading}
           >
             Transfer
@@ -185,7 +185,7 @@ export default function Predicate() {
       <div>
         <Button
           onClick={transferToWallet}
-          className="w-full"
+          className="w-full text-primary"
           disabled={isLoading}
         >
           Unlock and Transfer

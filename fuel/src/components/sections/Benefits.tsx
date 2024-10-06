@@ -10,28 +10,28 @@ interface BenefitsProps {
 
 const benefitList: BenefitsProps[] = [
   {
-    icon: "Blocks",
-    title: "Build Brand Trust",
+    icon: "Container",
+    title: "Reducing Impermanent Losses (IL)",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Protect your investments by minimising permanent losses with our intelligent asset management strategies.",
   },
   {
-    icon: "Blocks",
-    title: "More Leads",
+    icon: "Container",
+    title: "Simple, accessible interface",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.",
+      "Manage your DeFi yields easily with an intuitive interface inspired by UX best practice.",
   },
   {
-    icon: "Blocks",
-    title: "Higher Conversions",
+    icon: "Container",
+    title: "Strategy diversification",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam",
+      "Maximise your returns by diversifying your investments across several pools and strategies.",
   },
   {
-    icon: "Blocks",
-    title: "Test Marketing Ideas",
+    icon: "Container",
+    title: "Transparent and immediate follow-up",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Track your investments in real time with transparent, accurate reports that you can access at any time.",
   },
 ];
 
@@ -43,12 +43,14 @@ const BenefitsSection = () => {
           <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your Shortcut to Success
+            Your advantages with our Yield Aggregator
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-            ducimus reprehenderit architecto rerum similique facere odit
-            deleniti necessitatibus quo quae.
+            Simplify the management of your DeFi investments with our
+            performance aggregator. Our solution gives you access to optimised
+            strategies and enables you to diversify your investments while
+            minimising the risk of permanent loss. Discover how we can help you
+            maximise your profits, through a simple and intuitive interface.
           </p>
         </div>
 
