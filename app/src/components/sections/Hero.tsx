@@ -9,30 +9,33 @@ const HeroSection = () => {
         <div className="text-center space-y-8">
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1 className="mb-4 text-3xl font-bold sm:text-7xl">
-              Welcome to <strong>Supayield</strong>
+              <strong>Supayield</strong>
             </h1>
           </div>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            {`Our application is not just a simple tool, it's a real opportunity to optimise your DeFi investments.`}
+            The Super Simple Yield Aggregator <br />
+            <br />
+            <strong>Live on Fuel and NeoX 🚀</strong>
           </p>
 
-          <div className="space-y-4 md:space-y-0 md:space-x-4">
-            
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+          <div className="flex justify-center">
+            <Button className="w-1/2 font-bold group/arrow mr-4">
               <Link to="/earn-fuel">Get Started - <strong>Fuel</strong></Link>
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
 
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              <Link to="/earn-neox">Get Started - <strong>NeoX</strong></Link>
+            <Button className="w-1/2 font-bold group/arrow">
+              <Link to="/earn-neo-x">Get Started - <strong>NeoX</strong></Link>
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
+          </div>
 
+          <div style={{ marginTop: "10px" }}>
             <Button
               asChild
               variant="secondary"
-              className="w-5/6 md:w-1/4 font-bold"
+              className="font-bold hover:bg-secondary*2"
             >
               <Link
                 to="https://github.com/1xBuild/supayield"
