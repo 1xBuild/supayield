@@ -1,15 +1,15 @@
 import { useDisconnect, useWallet, useBalance } from "@fuels/react";
 import { useEffect, useState } from "react";
-import { bn } from 'fuels';
-
+import { AssetId, bn, Provider, Wallet } from 'fuels';
+import { MiraAmm, PoolId, ReadonlyMiraAmm } from 'mira-dex-ts';
 import Button from "./Button";
 import LocalFaucet from "./LocalFaucet";
-import { contractId, isLocal, renderFormattedBalance } from "../../lib.tsx";
+import { contractId, isLocal, providerUrl, renderFormattedBalance } from "../../lib.tsx";
 import { TestContract } from "../../sway-api/index.ts";
 import { Address } from "fuels";
 import { IdentityInput } from "@/sway-api/contracts/TestContract.ts";
 
-export default function Wallet() {
+export default function WalletComponent() {
   const { disconnect } = useDisconnect();
   const { wallet } = useWallet();
   const address = wallet?.address.toB256() || "";
@@ -38,6 +38,60 @@ export default function Wallet() {
       getTotalAssets();
     }
   }, [contract, total_assets]);
+
+  async function swapUSDTtoETH(amountInFloat: number, slippageInPercent: number = 1) {
+    setIsLoading(true);
+    if (!address) return;
+
+    try {
+      const provider = await Provider.create(providerUrl);
+      const wallet = Wallet.fromMnemonic(process.env.VITE_WALLET_SEED || "", undefined, undefined, provider);
+      const miraAmm = new MiraAmm(wallet);
+      const readonlyMiraAmm = new ReadonlyMiraAmm(provider);
+
+      const decimalsEth = 9; // 9 decimals for Fuel
+      const amountIn = bn(Math.floor(amountInFloat * 10 ** decimalsEth));
+
+      const assetIdEth = Address.fromString("0xf8f8b6283d7fa5b672b530cbb84fcccb4ff8dc40f8176ef4544ddb1f1952ad07");
+      const assetIdUsdt = Address.fromString("0x3f007b72f7bcb9b1e9abe2c76e63790cd574b7c34f1c91d6c2f407a5b55676b9");
+      const assetIn: AssetId = {
+        bits: assetIdEth.toB256()
+      };
+      const assetOut: AssetId = {
+        bits: assetIdUsdt.toB256()
+      };
+
+      const poolEthUsdc: PoolId = [assetIn, assetOut, false];
+      
+      // Preview the swap to get the expected output amount
+      const expectedOutputAmount = await readonlyMiraAmm.previewSwapExactInput(assetIn, amountIn, [poolEthUsdc]);
+      console.log("Expected output amount:", expectedOutputAmount.toString());
+
+      // Set amountOutMin to 99% of the expected output to account for slippage
+      const amountOutMin = expectedOutputAmount[1].mul(100 - slippageInPercent).div(100);
+      console.log("Amount out min:", amountOutMin.toString());
+
+      const deadline = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
+      const txParams = {
+        gasLimit: 1_000_000,
+      };
+
+      const txRequest = await miraAmm.swapExactInput(
+        amountIn, assetIn, amountOutMin, [poolEthUsdc], deadline, txParams
+      );
+
+      // Execute the transaction
+      const response = await wallet.sendTransaction(txRequest);
+      const result = await response.wait();
+      console.log("Transaction result:", result);
+      console.log("Transaction status:", result.status); // This is the transaction status (to display)
+      console.log("Transaction transactionId:", result.id); // This is the transaction ID (to display)
+    } catch (error) {
+      console.error("Error in swap function:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   async function deposit(amount: number) {
     console.log("wallet", wallet);
@@ -138,6 +192,9 @@ export default function Wallet() {
         </Button>
         {isLoading && <p>Loading...</p>}
         <p>Total Assets: {total_assets}</p>
+        <Button onClick={() => swapUSDTtoETH(depositAmount)} className="w-1/3">
+          Swap
+        </Button>
       </div>
       <div>
         <p>

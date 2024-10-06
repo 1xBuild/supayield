@@ -65,6 +65,9 @@ importers:
       lucide-react:
         specifier: ^0.447.0
         version: 0.447.0(react@18.3.1)
+      mira-dex-ts:
+        specifier: ^1.0.15
+        version: 1.0.15(fuels@0.94.8)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4670,6 +4673,11 @@ packages:
       typescript:
         optional: true
 
+  mira-dex-ts@1.0.15:
+    resolution: {integrity: sha512-ZG+ZUsYZZQZbtjCuz5C2nS6Z3j4PCmonjEStbVSJxWBwh3Kf0AMo4vxDUBtdQ4vNZYn7E1S6I3FxgXpje59QFw==}
+    peerDependencies:
+      fuels: ^0.94.8
+
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
@@ -7602,7 +7610,7 @@ snapshots:
       '@web3modal/core': 5.0.0(@types/react@18.3.11)(react@18.3.1)
       '@web3modal/scaffold': 5.0.0(@types/react@18.3.11)(react@18.3.1)
       '@web3modal/solana': 5.0.0(@types/react@18.3.11)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
-      '@web3modal/wagmi': 5.0.0(h6uxmbodz3deu2kocygxft4mou)
+      '@web3modal/wagmi': 5.0.0(@types/react@18.3.11)(@wagmi/connectors@5.1.15(@types/react@18.3.11)(@wagmi/core@2.13.8(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.2)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8))(@wagmi/core@2.13.4(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))
       fuels: 0.94.8
       rpc-websockets: 7.11.0
       socket.io-client: 4.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -8894,7 +8902,7 @@ snapshots:
 
   '@scure/bip32@1.4.0':
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.9
 
@@ -10426,8 +10434,8 @@ snapshots:
       lit: 3.1.0
       qrcode: 1.5.3
 
-  '@web3modal/wagmi@5.0.0(h6uxmbodz3deu2kocygxft4mou)':
-    dependencies:
+  ? '@web3modal/wagmi@5.0.0(@types/react@18.3.11)(@wagmi/connectors@5.1.15(@types/react@18.3.11)(@wagmi/core@2.13.8(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.2)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8))(@wagmi/core@2.13.4(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))'
+  : dependencies:
       '@wagmi/connectors': 5.1.15(@types/react@18.3.11)(@wagmi/core@2.13.8(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.2)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
       '@wagmi/core': 2.13.4(@tanstack/query-core@5.59.0)(@types/react@18.3.11)(react@18.3.1)(typescript@5.6.2)(viem@2.20.1(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))
       '@walletconnect/ethereum-provider': 2.13.0(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)
@@ -12460,6 +12468,10 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.2
 
+  mira-dex-ts@1.0.15(fuels@0.94.8):
+    dependencies:
+      fuels: 0.94.8
+
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
@@ -13857,8 +13869,8 @@ snapshots:
 
   webauthn-p256@0.0.5:
     dependencies:
-      '@noble/curves': 1.4.0
-      '@noble/hashes': 1.4.0
+      '@noble/curves': 1.6.0
+      '@noble/hashes': 1.5.0
 
   webextension-polyfill@0.10.0: {}
 
