@@ -263,42 +263,42 @@ export default function WalletComponent() {
   return (
     <>
       <div>
-        <h3 className="mb-1 text-sm font-medium dark:text-zinc-300/70">
+        <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
           Address
-        </h3>
-        <div className="flex flex-col md:flex-row items-center justify-between text-base dark:text-zinc-50">
+        </h2>
+        <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
           <input
             type="text"
             value={address}
-            className="w-2/3 bg-gray-800 rounded-md mb-2 md:mb-0 px-2 py-1 mr-3 truncate font-mono"
+            className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => disconnect()} className="w-1/3 text-secondary">
+          <Button onClick={() => disconnect()} className="w-1/3 text-primary">
             Disconnect
           </Button>
         </div>
       </div>
       <div>
-        <h3 className="mb-1 text-sm font-medium dark:text-zinc-300/70">
+        <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
           Balance
-        </h3>
-        <div className="flex items-center justify-between text-base dark:text-zinc-50">
+        </h2>
+        <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
           <input
             type="text"
             value={balance ? `${renderFormattedBalance(balance)} ETH` : ""}
             className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
             disabled
           />
-          <Button onClick={() => refetch()} className="w-1/3 text-secondary">
+          <Button onClick={() => refetch()} className="w-1/3 text-primary">
             Refresh
           </Button>
         </div>
       </div>
       <div>
-        <h3 className="mb-1 text-sm font-medium dark:text-zinc-300/70">
+        <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70">
           Deposit Amount
-        </h3>
-        <div className="flex items-center justify-between text-base dark:text-zinc-50">
+        </h2>
+        <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">
           <input
             type="number"
             step="any"
@@ -308,7 +308,7 @@ export default function WalletComponent() {
           />
           <Button
             onClick={() => deposit(depositAmount)}
-            className="w-1/3 text-secondary"
+            className="w-1/3 text-primary"
           >
             Deposit
           </Button>

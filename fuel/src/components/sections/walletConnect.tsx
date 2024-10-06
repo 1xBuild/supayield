@@ -22,28 +22,6 @@ export default function WalletConnect() {
     <main className="min-h-screen bg-background p-8">
       <Card className="w-full max-w-3xl mx-auto bg-card shadow-light rounded-lg">
         <CardContent className="p-6 space-y-6">
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold text-foreground">Asset</h2>
-            <div className="flex justify-between items-center bg-accent/10 rounded-2xl p-4">
-              <div>
-                <p className="text-4xl font-bold text-foreground">0.00</p>
-                <p className="text-muted-foreground">No token selected</p>
-              </div>
-              <Button variant="secondary" className="rounded-full px-6">
-                Select
-              </Button>
-            </div>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold text-foreground">Opportunity</h2>
-            <div className="flex justify-between items-center bg-accent/10 rounded-2xl p-4">
-              <p className="text-3xl font-bold text-foreground">Up to 7,25 % APY</p>
-              <Button variant="secondary" className="rounded-full px-6">
-                Select
-              </Button>
-            </div>
-          </section>
 
           {!isConnected && (
             <Button onClick={() => connect()} className="w-full rounded-full bg-primary text-primary-foreground text-lg py-6">
