@@ -2,10 +2,10 @@ import { useConnectUI, useIsConnected, useNetwork } from "@fuels/react"
 import { useEffect } from "react"
 import { useRouter } from "@/hooks/useRouter"
 import { Button } from "@/components/ui/button"
-import Wallet from "@/components/fuels/Wallet"
 import Faucet from "@/components/fuels/Faucet"
 import { providerUrl } from "@/lib"
 import HeroSection from "./Hero"
+import WalletComponent from "@/components/fuels/Wallet";
 
 export default function App() {
   const { connect } = useConnectUI()
