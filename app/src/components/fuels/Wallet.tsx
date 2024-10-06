@@ -26,7 +26,7 @@ export default function WalletComponent() {
   const [contract, setContract] = useState<TestContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
-  const { setAddress, setBalanceEth, setBalanceSupa } = useWalletContext();
+  const { setAddress, setBalanceEth, setBalanceSupa, balanceSupa } = useWalletContext();
   const { disconnect } = useDisconnect();
   const [txid, setTxid] = useState<string | null>(null);
 
@@ -340,7 +340,10 @@ export default function WalletComponent() {
           )}
         </div>
         {txid && (
-          <p>⚡️ We received your deposit, see the tx on : <a href={`https://app.fuel.network/tx/${txid}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Fuel Explorer</a></p>
+          <div>
+            <p>⚡️ We received your deposit, see the tx on : <a href={`https://app.fuel.network/tx/${txid}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Fuel Explorer</a></p>
+            <p>💰 Your earned {balanceSupa ? balanceSupa/1000 : 0} $SUPA</p>
+          </div>
         )}
       </div>
       {isLocal && <LocalFaucet refetch={refetch} />}
