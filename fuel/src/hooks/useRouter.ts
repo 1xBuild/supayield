@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
  * Hook for basic route and view management
  */
 export const useRouter = () => {
-  const views = ['wallet', 'predicate', 'script', 'faucet'];
+  const views = ['wallet', 'faucet'];
   const [view, setView] = useState<string>('wallet');
   const queryParam = 'v';
 

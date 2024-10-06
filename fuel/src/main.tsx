@@ -5,8 +5,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "fuels";
-import Router from "./config/router.tsx"
-import { providerUrl } from "./lib.tsx";
+import Router from "./config/router";
+import { providerUrl } from "./lib";
+import { WalletProvider} from "./contexts/walletContext"
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
@@ -21,9 +22,22 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <FuelProvider theme="dark" fuelConfig={{ connectors }}>
+        <WalletProvider>
         <Router />
-        <ToastContainer theme="dark" />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+        </WalletProvider>
       </FuelProvider>
     </QueryClientProvider>
-  </StrictMode>,
+  </StrictMode>
 );

@@ -3,8 +3,6 @@ import { useEffect } from "react"
 import { useRouter } from "@/hooks/useRouter"
 import { Button } from "@/components/ui/button"
 import Wallet from "@/components/fuels/Wallet"
-import Predicate from "@/components/fuels/Predicate"
-import Script from "@/components/fuels/Script"
 import Faucet from "@/components/fuels/Faucet"
 import { providerUrl } from "@/lib"
 import HeroSection from "./Hero"
@@ -67,8 +65,6 @@ export default function App() {
 
               <div className="bg-gray-700 rounded-lg p-4">
                 {view === "wallet" && <Wallet />}
-                {view === "predicate" && <Predicate />}
-                {view === "script" && <Script />}
                 {view === "faucet" && <Faucet />}
               </div>
             </section>

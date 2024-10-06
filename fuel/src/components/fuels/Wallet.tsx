@@ -1,6 +1,7 @@
 import { useDisconnect, useWallet, useBalance } from "@fuels/react";
 import { useEffect, useState } from "react";
 import { bn } from 'fuels';
+import { useWalletContext } from "../../contexts/walletContext";
 
 import Button from "./Button";
 import LocalFaucet from "./LocalFaucet";
@@ -8,6 +9,7 @@ import { contractId, isLocal, renderFormattedBalance } from "../../lib.tsx";
 import { TestContract } from "../../sway-api/index.ts";
 import { Address } from "fuels";
 import { IdentityInput } from "@/sway-api/contracts/TestContract.ts";
+import { toast } from "react-toastify";
 
 export default function Wallet() {
   const { disconnect } = useDisconnect();
@@ -18,6 +20,8 @@ export default function Wallet() {
   const [contract, setContract] = useState<TestContract>();
   const [isLoading, setIsLoading] = useState(false);
   const [total_assets, setTotalAssets] = useState(0);
+  const { setAddress, setBalance } = useWalletContext();
+  
 
   useEffect(() => {
     if (wallet) {
@@ -25,6 +29,15 @@ export default function Wallet() {
       setContract(testContract);
     }
   }, [wallet]);
+
+  useEffect(() => {
+    if (address) {
+      setAddress(address);
+    }
+    if (balance && balance.toNumber) {
+      setBalance(balance.toNumber());
+    }
+  }, [address, balance, setAddress, setBalance]);
 
   // Initialize contract
   useEffect(() => {
@@ -69,10 +82,12 @@ export default function Wallet() {
         .call();
       // transactionSubmitNotification(call.transactionId);
       const result = await call.waitForResult();
+      toast.success(`🎉 Well done deposite ${amount} ETH !`);
       console.log("result", result);
       // transactionSuccessNotification(result.transactionId);
       // setCounter(result.value.toNumber());
     } catch (error) {
+      toast.error("Error during deposit");
       console.error(error);
       // errorNotification("Error incrementing counter");
     }
@@ -131,7 +146,7 @@ export default function Wallet() {
           type="number" step="any"
           value={depositAmount}
           onChange={(e) => setDepositAmount(parseFloat(e.target.value) || 0)}
-          className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono"
+          className="w-2/3 bg-gray-800 custom-input dark:text-black rounded-md px-2 py-1 mr-3 truncate font-mono"
         />
         <Button onClick={() => deposit(depositAmount)} className="w-1/3 text-primary">
           Deposit

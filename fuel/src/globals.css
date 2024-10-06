@@ -98,7 +98,7 @@ html {
 /* Added hover effects and transitions */
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-md transition-all duration-200 ease-in-out;
+    @apply px-4 py-2 rounded-md transition-all duration-150 ease-in-out;
   }
 
   .btn-primary {
@@ -110,7 +110,7 @@ html {
   }
 
   .input {
-    @apply border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-in-out;
+    @apply border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-150 ease-in-out;
   }
 
   .input:hover {
@@ -118,25 +118,25 @@ html {
   }
 
   .card {
-    @apply bg-card text-card-foreground rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-200 ease-in-out;
+    @apply bg-card text-card-foreground rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-150 ease-in-out;
   }
 
   .link {
-    @apply text-primary underline-offset-4 hover:underline transition-all duration-200 ease-in-out;
+    @apply text-primary underline-offset-4 hover:underline transition-all duration-150 ease-in-out;
   }
 }
 
 /* Additional hover effects */
 .hover-scale {
-  @apply transition-transform duration-200 ease-in-out hover:scale-105;
+  @apply transition-transform duration-150 ease-in-out hover:scale-105;
 }
 
 .hover-brightness {
-  @apply transition-all duration-200 ease-in-out hover:brightness-110;
+  @apply transition-all duration-150 ease-in-out hover:brightness-110;
 }
 
 .hover-shadow {
-  @apply transition-shadow duration-200 ease-in-out hover:shadow-lg;
+  @apply transition-shadow duration-150 ease-in-out hover:shadow-lg;
 }
 
 /* Improved focus styles */
@@ -146,7 +146,7 @@ html {
 
 /* Smooth transitions for theme changes */
 * {
-  @apply transition-colors duration-200 ease-in-out;
+  @apply transition-colors duration-150 ease-in-out;
 }
 
 @layer components {
@@ -169,4 +169,8 @@ html {
   .link:hover {
     @apply text-primary/80;
   }
+}
+
+.custom-input {
+  color: grey;
 }

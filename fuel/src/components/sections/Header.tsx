@@ -98,9 +98,9 @@ export default function Navbar() {
                       className="justify-start text-base"
                     >
                       {isAnchorLink ? (
-                        <a href={href}>{title}</a> // Utilise une ancre pour les sections internes
+                        <a href={href}>{title}</a>
                       ) : (
-                        <Link to={href}>{title}</Link> // Utilise react-router-dom pour les routes normales
+                        <Link to={href}>{title}</Link>
                       )}
                     </Button>
                   );

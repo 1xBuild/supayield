@@ -13,37 +13,37 @@ const featureList: FeaturesProps[] = [
     icon: "TabletSmartphone",
     title: "Mobile Friendly",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, consectetur.",
+      "Our application is entirely mobile-friendly, allowing you to monitor and manage your DeFi investments wherever you are, at any time.",
   },
   {
     icon: "BadgeCheck",
     title: "Social Proof",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Natus consectetur, odio ea accusamus aperiam.",
+      "All transactions and interactions are secured and validated on the blockchain, guaranteeing the transparency and reliability of your funds. Our smart contracts are inspired by the best practices used by leaders like Beefy.",
   },
   {
     icon: "Goal",
     title: "Targeted Content",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. odio ea accusamus aperiam.",
+      "Nous fournissons des tutoriels et des guides adaptés à tous les niveaux, que vous soyez débutant en DeFi ou investisseur expérimenté, pour vous aider à maximiser vos rendements.",
   },
   {
     icon: "PictureInPicture",
     title: "Strong Visuals",
     description:
-      "Lorem elit. A odio velit cum aliquam. Natus consectetur dolores, odio ea accusamus aperiam.",
+      "Our uncluttered interface lets you navigate easily between your strategies, see the evolution of your returns and adjust your positions effortlessly.",
   },
   {
     icon: "MousePointerClick",
     title: "Clear CTA",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing. odio ea accusamus consectetur.",
+      "We guide you every step of the way with clear directions and calls to action that help you navigate quickly and without confusion.",
   },
   {
     icon: "Newspaper",
     title: "Clear Headline",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur.",
+      "Our sections are organised to give you essential information in a concise way, so you can make informed decisions about your investments.",
   },
 ];
 
@@ -59,9 +59,7 @@ const FeaturesSection = () => {
       </h2>
 
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
-        fugiat, odit similique quasi sint reiciendis quidem iure veritatis optio
-        facere tenetur.
+        Why choose us and not someone else ?
       </h3>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

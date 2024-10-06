@@ -14,7 +14,7 @@ const HeroSection = () => {
           </div>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            {`We're more than just a tool, we're a community of passionate creators. Get access to exclusive resources, tutorials, and support.`}
+            {`Our application is not just a simple tool, it's a real opportunity to optimise your DeFi investments.`}
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
