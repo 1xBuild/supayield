@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useSwitchChain, useAccount } from "wagmi";
+import { useSwitchChain, useAccount, useReadContract } from "wagmi";
 import { connect, disconnect } from "@wagmi/core";
 import { injected } from "@wagmi/connectors";
 import { neoxTestnet } from "@/main";
@@ -8,12 +8,41 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { formatUnits } from "ethers";
+
+const tokenAddress = "0x4A468E0793bD3c434aa81A66F66D8Cf467cf68Ea";
+const tokenAbi = [
+  {
+    constant: true,
+    inputs: [{ name: "_owner", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "balance", type: "uint256" }],
+    type: "function",
+  },
+] as const;
 
 export default function EarnNeoX() {
   const { switchChain } = useSwitchChain();
   const { address, chain } = useAccount();
   const [isLoading, setIsLoading] = useState(false);
   const [depositAmount, setDepositAmount] = useState(0);
+  const [tokenBalance, setTokenBalance] = useState<string>("0");
+
+  const { data: balanceData } = useReadContract({
+    address: tokenAddress,
+    abi: tokenAbi,
+    functionName: 'balanceOf',
+    args: [address!],
+    query: {
+      enabled: !!address,
+    },
+  });
+
+  useEffect(() => {
+    if (balanceData) {
+      setTokenBalance(formatUnits(balanceData as bigint, 18)); // Assuming 18 decimals, adjust if different
+    }
+  }, [balanceData]);
 
   function simulateButtonClick(action: () => void, delay: number) {
     setIsLoading(true);
@@ -36,7 +65,7 @@ export default function EarnNeoX() {
     }
 
     switchToChain();
-  }, [address, chain?.id]);
+  }, [address, chain?.id, switchChain]);
 
   return (
     <main className="min-h-screen bg-background p-8">
@@ -80,7 +109,7 @@ export default function EarnNeoX() {
               type="text"
               className="w-2/3 bg-gray-800 rounded-md px-2 py-1 mr-3 truncate font-mono border border-gray-300"
               disabled
-              placeholder={address ? "0.5 ETH" : "Please connect your wallet"}
+              placeholder={address ? `${tokenBalance.slice(0, 6)} xBNB` : "Please connect your wallet"}
             />
             {address && (
               <Button color="secondary" className="w-1/3">
@@ -92,7 +121,7 @@ export default function EarnNeoX() {
           <h2 className="mb-1 text-xl font-medium dark:text-zinc-300/70 mt-8">
             Deposit to <br />
             <span className="text-muted-foreground text-sm">
-              Up to <strong>3,11% </strong>APY
+              Up to <strong>5,11% </strong>APY
             </span>
           </h2>
           <div className="flex items-center justify-between text-base dark:text-zinc-50 p-4">

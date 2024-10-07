@@ -36,7 +36,7 @@ const HeroSection = () => {
             }
             {location.pathname !== '/fuel' &&
               <Button className="w-1/2 font-bold group/arrow mr-4">
-                <Link to="/earn-neo-x">Get Started - <strong>Neo X</strong></Link>
+                <Link to="/earn-neox">Get Started - <strong>Neo X</strong></Link>
                 <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
               </Button>
             }
