@@ -348,7 +348,7 @@ export default function WalletComponent() {
             style={{ border: "1px solid gray" }}
           />
           {isLoading ? (
-            <Loader className="mx-auto" />
+            <Loader className="mx-auto animate-spin" />
           ) : (
             <span className="w-1/3">
               {isConnected && (
