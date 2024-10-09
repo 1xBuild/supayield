@@ -28,7 +28,8 @@ const supaAbi = [
 ] as const;
 
 const xBnbTokenAddress = "0x4A468E0793bD3c434aa81A66F66D8Cf467cf68Ea";
-const tokenVaultAddress = "0xAfBBed935EaDcFBEB4Da94F330eF50d6D5dE4F5a";
+const tokenVaultAddress = "0xdcd47726D9eFC1FaEa5ffbe0B1aEB339cb8F841C";
+// const tokenVaultAddress = "0xAfBBed935EaDcFBEB4Da94F330eF50d6D5dE4F5a"; // previous working contract
 
 const tokenAbi = [
   {
