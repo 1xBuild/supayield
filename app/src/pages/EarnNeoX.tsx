@@ -28,7 +28,9 @@ const supaAbi = [
 ] as const;
 
 const xBnbTokenAddress = "0x4A468E0793bD3c434aa81A66F66D8Cf467cf68Ea";
-const tokenVaultAddress = "0x1AeE4c95C71b3A2580348e4bA9A39F117732495C";
+const tokenVaultAddress = "0xdcd47726D9eFC1FaEa5ffbe0B1aEB339cb8F841C";
+// const tokenVaultAddress = "0xAfBBed935EaDcFBEB4Da94F330eF50d6D5dE4F5a"; // previous working contract
+
 const tokenAbi = [
   {
     constant: true,
@@ -52,7 +54,7 @@ const tokenAbi = [
 const tokenVaultAbi = [
   {
     inputs: [{ name: "_assets", type: "uint256" }],
-    name: "_deposit",
+    name: "depositAssets",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -85,12 +87,12 @@ export default function EarnNeoX() {
 
   const depositOnContract = async (amount: number) => {
     const amountInWei = parseUnits(amount.toString(), 18);
-    // Call _deposit function on TokenVault contract
+    // Call depositAssets function on TokenVault contract
     console.log("Sending deposit transaction...");
     await writeDeposit({
       address: tokenVaultAddress,
       abi: tokenVaultAbi,
-      functionName: "_deposit",
+      functionName: "depositAssets",
       args: [amountInWei],
     });
   };
